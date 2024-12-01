@@ -129,9 +129,11 @@ class TennisGameDefactored2:
         if (self.p2_points > self.p1_points and self.p1_points >= 3):
             result = "Advantage " + self.player2_name
         
-        if (self.p1_points >= 4 and self.p2_points >= 0 and (self.p1_points - self.p2_points) >= 2):
+        if (self.p1_points >= 4 and self.p2_points >= 0 and
+                (self.p1_points - self.p2_points) >= 2):
             result = "Win for " + self.player1_name
-        if (self.p2_points >= 4 and self.p1_points >= 0 and (self.p2_points - self.p1_points) >= 2):
+        if (self.p2_points >= 4 and self.p1_points >= 0 and
+                (self.p2_points - self.p1_points) >= 2):
             result = "Win for " + self.player2_name
         return result
     
@@ -167,12 +169,14 @@ class TennisGameDefactored3:
         if (self.p1 < 4 and self.p2 < 4):
             p = ["Love", "Fifteen", "Thirty", "Forty"]
             s = p[self.p1]
-            return s + "-All" if (self.p1 == self.p2) else s + "-" + p[self.p2]
+            return s + "-All" if (self.p1 == self.p2) else s + \
+                                                           "-" + p[self.p2]
         else:
             if (self.p1 == self.p2):
                 return "Deuce"
             s = self.p1N if self.p1 > self.p2 else self.p2N
-            return "Advantage " + s if ((self.p1-self.p2)*(self.p1-self.p2) == 1) else "Win for " + s
+            return "Advantage " + s if ((self.p1-self.p2) *
+                    (self.p1-self.p2) == 1) else "Win for " + s
 
 
 
@@ -225,20 +229,27 @@ class TennisGameDefactored3:
                      dict(p1Points=3, p2Points=4, score="Advantage player2"),
                      dict(p1Points=5, p2Points=4, score="Advantage player1"),
                      dict(p1Points=4, p2Points=5, score="Advantage player2"),
-                     dict(p1Points=15, p2Points=14, score="Advantage player1"),
-                     dict(p1Points=14, p2Points=15, score="Advantage player2"),
+                     dict(p1Points=15, p2Points=14,
+                          score="Advantage player1"),
+                     dict(p1Points=14, p2Points=15,
+                          score="Advantage player2"),
 
                      dict(p1Points=6, p2Points=4, score="Win for player1"),
                      dict(p1Points=4, p2Points=6, score="Win for player2"),
                      dict(p1Points=16, p2Points=14, score="Win for player1"),
                      dict(p1Points=14, p2Points=16, score="Win for player2"),
 
-                     dict(p1Points=6, p2Points=4, score="Win for One", p1Name='One'),
-                     dict(p1Points=4, p2Points=6, score="Win for Two", p2Name="Two"),
-                     dict(p1Points=6, p2Points=5, score="Advantage One", p1Name='One'),
-                     dict(p1Points=5, p2Points=6, score="Advantage Two", p2Name="Two"),
+                     dict(p1Points=6, p2Points=4,
+                          score="Win for One", p1Name='One'),
+                     dict(p1Points=4, p2Points=6,
+                          score="Win for Two", p2Name="Two"),
+                     dict(p1Points=6, p2Points=5,
+                          score="Advantage One", p1Name='One'),
+                     dict(p1Points=5, p2Points=6,
+                          score="Advantage Two", p2Name="Two"),
                      ])
-            def test_get_score(self, p1_points, p2_points, score, p1_name, p2_name):
+            def test_get_score(self, p1_points, p2_points,
+                               score, p1_name, p2_name):
                 game = TennisGame(p1_name, p2_name)
                 for i in range(p1_points):
                     game.won_point(p1_name)
