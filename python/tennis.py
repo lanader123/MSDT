@@ -2,6 +2,7 @@
 
 class TennisGameDefactored1:
 
+
     def __init__(self, player1_name, player2_name):
         self.player1_name = player1_name
         self.player2_name = player2_name
@@ -28,7 +29,7 @@ class TennisGameDefactored1:
             minusResult = self.p1_points - self.p2_points
             if (minusResult == 1):
                 result ="Advantage " + self.player1_name
-            elif (minusResult ==-1):
+            elif (minusResult == -1):
                 result ="Advantage " + self.player2_name
             elif (minusResult >= 2):
                 result = "Win for " + self.player1_name
@@ -51,18 +52,22 @@ class TennisGameDefactored1:
 
 
 class TennisGameDefactored2:
+
+
     def __init__(self, player1_name, player2_name):
         self.player1_name = player1_name
         self.player2_name = player2_name
         self.p1_points = 0
         self.p2_points = 0
-        
+
+
     def won_point(self, playerName):
         if playerName == self.player1_name:
             self.p1_score()
         else:
             self.p2_score()
-    
+
+
     def score(self):
         result = ""
         if (self.p1_points == self.p2_points and self.p1_points < 4):
@@ -87,7 +92,6 @@ class TennisGameDefactored2:
                 P1res = "Thirty"
             if (self.p1_points == 3):
                 P1res = "Forty"
-            
             P2res = "Love"
             result = P1res + "-" + P2res
         if (self.p2_points > 0 and self.p1_points == 0):
@@ -136,22 +140,26 @@ class TennisGameDefactored2:
                 (self.p2_points - self.p1_points) >= 2):
             result = "Win for " + self.player2_name
         return result
-    
+
+
     def SetP1Score(self, number):
         for i in range(number):
             self.p1_score()
-    
+
+
     def SetP2Score(self, number):
         for i in range(number):
             self.p2_score()
-    
+
+
     def p1_score(self):
         self.p1_points += 1
     
     
     def p2_score(self):
         self.p2_points += 1
-        
+
+
 class TennisGameDefactored3:
     def __init__(self, player1_name, player2_name):
         self.p1N = player1_name
@@ -177,7 +185,6 @@ class TennisGameDefactored3:
             s = self.p1N if self.p1 > self.p2 else self.p2N
             return "Advantage " + s if ((self.p1-self.p2) *
                     (self.p1-self.p2) == 1) else "Win for " + s
-
 
 
         # test support code
