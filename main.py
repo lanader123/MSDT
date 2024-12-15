@@ -8,6 +8,17 @@
 + Модульность игроков.
 """
 import random
+import logging
+
+logging.basicConfig\
+        (
+    level=logging.INFO,
+    format='%(asctime)s [%(levelname)s] [%(funcName)s] %(message)s',
+    handlers=[
+        logging.StreamHandler(),
+        logging.FileHandler('logs.log', encoding='utf-8')
+    ]
+)
 
 
 PLAYER_SYMBOLS = ".OX"
@@ -84,6 +95,7 @@ def random_player(gm, player):
         if len(empty_cells) > 0:
             player_row = i
             player_column = random.choice(empty_cells)
+            logging.info(f"Компьютер поставил {PLAYER_SYMBOLS[current_player]} в {player_row, player_column}")
             return player_row, player_column
 
 
@@ -93,28 +105,32 @@ def input_player(gm, player):
 
         player_input = input(f"Игрок №{player}({PLAYER_SYMBOLS[player]}), введите позицию: ")
         if len(player_input) != 2:
+            logging.info("Игрок ввёл неверное кол-во символов")
             print("Введено неверное количество символов. Формат: A1.")
             continue
         player_row, player_column = player_input
 
         player_row = ROW_INDICES.find(player_row)
         if player_row == -1:
+            logging.info("Игрок ввёл неверно ввёл ряд")
             print("Введен неверный номер ряда. Укажите букву:", ','.join(ROW_INDICES))
             continue
 
         player_column = COLUMN_INDICES.find(player_column)
         if player_column == -1:
             print("Введен неверный номер колонки. Укажите цифру:", ','.join(COLUMN_INDICES))
+            logging.info("Игрок неверно ввёл номер колонки")
             continue
 
         if gm[player_row][player_column] > 0:
             print("Эта ячейка уже занята, выберите другую.")
+            logging.info("Игрок выбрал уже занятую ячейку")
             continue
 
+
+        logging.info(f"Игрок поставил {PLAYER_SYMBOLS[player]} в {player_row, player_column}")
         return player_row, player_column
 
-
-# TODO: Сделать размер доски изменяемым (например, спросить пользователя перед началом игры)
 game_map = []
 for _ in range(3):
     temp = []
@@ -122,11 +138,9 @@ for _ in range(3):
         temp.append(0)
     game_map.append(temp)
 
-
 current_player = 1
 completed, who_won = False, 0
 
-# TODO: Сделать возможность выбора оппонента (или просто бота на бота натравить :P)
 game_players = [None, input_player, random_player]
 
 while not completed:
@@ -147,6 +161,12 @@ while not completed:
 
 print_game_map(game_map)
 if who_won != 0:
+    if who_won==1:
+        winner="игрок"
+    if who_won==2:
+        winner="компьютер"
+    logging.info(f"Победил {winner}")
     print(f"Игрок №{who_won} победил!")
 else:
+    logging.info("Победила дружба")
     print("Игра завершилась на ничье.")
