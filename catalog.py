@@ -77,8 +77,6 @@ class SupermarketCatalog:
         def items(self):
              return self._items[:]
 
-        def discounts(self):
-             return self._discounts[:]
 
 
 
@@ -111,6 +109,7 @@ class ReceiptPrinter:
             line += f"  {self.print_price(item.price)} * {self.print_quantity(item)}\n"
         return line
 
+def 123: asdqwdqwe
     def format_line_with_whitespace(self, name, value):
         line = name
         whitespace_size = self.columns - len(name) - len(value)
