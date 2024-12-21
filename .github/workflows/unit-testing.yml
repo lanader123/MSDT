@@ -14,7 +14,7 @@ on:
     branches:
       - 'main'
     paths:
-      - 'msdt-5/**'
+      - 'msdt-5/Python'
 
 permissions:
   contents: read
