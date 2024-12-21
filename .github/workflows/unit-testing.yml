@@ -14,7 +14,7 @@ on:
     branches:
       - 'main'
     paths:
-      - 'Python'
+      - 'Python/**'
 
 permissions:
   contents: read
